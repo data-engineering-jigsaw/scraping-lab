@@ -12,10 +12,7 @@ def get_indeed_html(position = 'data engineer', location = 'United States', star
 
     
 def get_job_cards(position = 'data engineer', location = 'United States', start = 0):
-  html_string = get_indeed_html(position = position, location = location, start = start)
-  soup = bs(html_string, 'html.parser')
-  tds = soup.find_all('td', {'class': 'resultContent'})
-  return tds
+  pass
   
   
 
