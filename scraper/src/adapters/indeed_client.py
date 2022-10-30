@@ -2,13 +2,20 @@ import re
 from bs4 import BeautifulSoup as bs
 import requests
 import pdb
-headers={"User-Agent": "Mozilla/5.0 (iPad; CPU OS 12_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148"}
+headers={"User-Agent": "Googlebot"}
+
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+
+
 
 def get_indeed_html(position = 'data engineer', location = 'United States', start = 0):
-    url = 'http://www.indeed.com/jobs'
-    params = {'q': position, 'l': location, 'explvl':'entry_level', 'start': start}
-    response = requests.get(url, params = params, headers = headers, timeout=10)
-    return response.text
+    driver = webdriver.Firefox(executable_path=r'/Users/jeffreykatz/Downloads/geckodriver')
+    driver.get("http://www.indeed.com/jobs?q=data+engineer&l=New+York%2C+NY&vjk=67f4c335f087a0eb")
+    driver.find_element(By.TAG_NAME, 'html')
+    return driver.page_source
 
     
 def get_job_cards(position = 'data engineer', location = 'United States', start = 0):
